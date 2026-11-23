@@ -1,0 +1,21 @@
+name: Chapter 01 — Compile and Run
+
+on:
+  push:
+    paths:
+      - 'labs/01-source-to-executable/**'
+      - '.github/workflows/chapter01-build.yml'
+  pull_request:
+    paths:
+      - 'labs/01-source-to-executable/**'
+      - '.github/workflows/chapter01-build.yml'
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and smoke test
+        run: |
+          g++ -std=c++17 -Wall -Wextra labs/01-source-to-executable/starter/main.cpp -o DeviceSimulator
+          ./DeviceSimulator | grep 'Device status: HEALTHY'

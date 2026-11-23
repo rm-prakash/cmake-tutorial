@@ -1,0 +1,16 @@
+# Compiled outputs and common CMake build trees
+*.exe
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.pdb
+*.ilk
+/build/
+**/build/
+**/CMakeFiles/
+**/CMakeCache.txt
+.vs/
+.DS_Store
