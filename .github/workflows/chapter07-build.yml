@@ -1,0 +1,36 @@
+name: Chapter 07 - Configurations
+on:
+  push:
+    paths:
+      - 'chapters/07-debug-release-build-configurations/**'
+      - 'labs/07-debug-release-build-configurations/**'
+      - '.github/workflows/chapter07-build.yml'
+  pull_request:
+    paths:
+      - 'chapters/07-debug-release-build-configurations/**'
+      - 'labs/07-debug-release-build-configurations/**'
+      - '.github/workflows/chapter07-build.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        config: [Debug, Release]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: labs/07-debug-release-build-configurations/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        shell: bash
+        run: cmake -S . -B build/ci -G 'Ninja Multi-Config' -DBUILD_TESTING=ON
+      - name: Build
+        shell: bash
+        run: cmake --build build/ci --config '${{ matrix.config }}' --parallel
+      - name: Test
+        shell: bash
+        run: ctest --test-dir build/ci -C '${{ matrix.config }}' --output-on-failure
