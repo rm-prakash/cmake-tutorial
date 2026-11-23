@@ -1,0 +1,30 @@
+name: Chapter 02 - Manual GCC Build
+on:
+  push:
+    paths:
+      - 'labs/02-compilers-linkers-and-libraries/**'
+      - '.github/workflows/chapter02-build.yml'
+  pull_request:
+    paths:
+      - 'labs/02-compilers-linkers-and-libraries/**'
+      - '.github/workflows/chapter02-build.yml'
+  workflow_dispatch:
+jobs:
+  gcc:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/02-compilers-linkers-and-libraries/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build manually (before learning CMake)
+        run: |
+          mkdir -p build
+          g++ -std=c++17 -Wall -Wextra -Iinclude -c src/sensor.cpp -o build/sensor.o
+          g++ -std=c++17 -Wall -Wextra -Iinclude -c src/diagnostics.cpp -o build/diagnostics.o
+          ar rcs build/libembeddedcore.a build/sensor.o build/diagnostics.o
+          g++ -std=c++17 -Wall -Wextra -Iinclude app/main.cpp build/libembeddedcore.a -o build/DeviceSimulator
+      - name: Smoke test
+        run: |
+          ./build/DeviceSimulator | tee build/output.txt
+          grep -q 'Device status: HEALTHY' build/output.txt
