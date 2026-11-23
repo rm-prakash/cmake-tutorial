@@ -1,0 +1,25 @@
+cxx = g++
+ar = ar
+cxxflags = -std=c++17 -O0 -g -Wall -Wextra -Wpedantic -Iinclude
+
+rule compile
+  command = mkdir -p build/ninja && $cxx $cxxflags -MMD -MF $out.d -MT $out -c $in -o $out
+  depfile = $out.d
+  deps = gcc
+  description = CXX $out
+
+rule archive
+  command = $ar rcs $out $in
+  description = AR $out
+
+rule link
+  command = $cxx $in -o $out
+  description = LINK $out
+
+build build/ninja/sensor.o: compile src/sensor.cpp
+build build/ninja/diagnostics.o: compile src/diagnostics.cpp
+build build/ninja/main.o: compile app/main.cpp
+build build/ninja/libembeddedcore.a: archive build/ninja/sensor.o build/ninja/diagnostics.o
+build build/ninja/DeviceSimulator: link build/ninja/main.o build/ninja/libembeddedcore.a
+
+default build/ninja/DeviceSimulator

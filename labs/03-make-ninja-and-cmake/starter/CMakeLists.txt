@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(EmbeddedCoreChapter03 LANGUAGES CXX)
+# TODO: add_library(embeddedcore STATIC ...)
+# TODO: target_include_directories(embeddedcore PUBLIC ...)
+# TODO: add_executable(DeviceSimulator ...)
+# TODO: target_link_libraries(DeviceSimulator PRIVATE embeddedcore)

@@ -1,0 +1,56 @@
+name: Chapter 03 - Make Ninja CMake
+
+on:
+  push:
+    paths:
+      - 'chapters/03-make-ninja-and-cmake/**'
+      - 'labs/03-make-ninja-and-cmake/**'
+      - '.github/workflows/chapter03-build.yml'
+  pull_request:
+    paths:
+      - 'chapters/03-make-ninja-and-cmake/**'
+      - 'labs/03-make-ninja-and-cmake/**'
+      - '.github/workflows/chapter03-build.yml'
+  workflow_dispatch:
+
+jobs:
+  linux-builds:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/03-make-ninja-and-cmake/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y ninja-build g++ make
+      - name: GNU Make
+        run: |
+          make -j2
+          test "$(./build/make/DeviceSimulator | tail -1)" = 'Device status: HEALTHY'
+      - name: Ninja
+        run: |
+          ninja -f build.ninja
+          test "$(./build/ninja/DeviceSimulator | tail -1)" = 'Device status: HEALTHY'
+      - name: CMake with Ninja
+        run: |
+          cmake -S . -B build/cmake -G Ninja
+          cmake --build build/cmake
+          test "$(./build/cmake/DeviceSimulator | tail -1)" = 'Device status: HEALTHY'
+
+  windows-cmake:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: labs/03-make-ninja-and-cmake/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure with Visual Studio
+        run: cmake -S . -B build/windows -G "Visual Studio 17 2022" -A x64
+      - name: Build Release
+        run: cmake --build build/windows --config Release
+      - name: Run
+        shell: pwsh
+        run: |
+          $result = & ./build/windows/Release/DeviceSimulator.exe
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if ($result[-1] -ne 'Device status: HEALTHY') { throw "Unexpected output: $result" }
