@@ -1,0 +1,5 @@
+#pragma once
+namespace embeddedcore::configuration {
+    inline constexpr char label[] = "@DEVICE_LABEL@";
+    inline constexpr double warning_threshold_c = @WARNING_THRESHOLD_C@;
+}

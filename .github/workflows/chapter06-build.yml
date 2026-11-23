@@ -1,0 +1,30 @@
+name: Chapter 06 - Variables and Includes
+on:
+  push:
+    paths:
+      - 'chapters/06-variables-scopes-and-include-directories/**'
+      - 'labs/06-variables-scopes-and-include-directories/**'
+      - '.github/workflows/chapter06-build.yml'
+  pull_request:
+    paths:
+      - 'chapters/06-variables-scopes-and-include-directories/**'
+      - 'labs/06-variables-scopes-and-include-directories/**'
+      - '.github/workflows/chapter06-build.yml'
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        strict: ['ON', 'OFF']
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: labs/06-variables-scopes-and-include-directories/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build -DDEVICE_LABEL=CI-Node -DEMBEDDEDCORE_STRICT_LIMIT=${{ matrix.strict }}
+      - name: Build
+        run: cmake --build build --config Debug
+      - name: Test
+        run: ctest --test-dir build -C Debug --output-on-failure
