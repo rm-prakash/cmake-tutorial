@@ -1,0 +1,37 @@
+name: Chapter 05 - Target Based CMake Lab
+
+on:
+  push:
+    paths:
+      - 'labs/05-cmake-targets-properties-dependencies/**'
+      - '.github/workflows/chapter05-build.yml'
+  pull_request:
+    paths:
+      - 'labs/05-cmake-targets-properties-dependencies/**'
+      - '.github/workflows/chapter05-build.yml'
+  workflow_dispatch:
+
+jobs:
+  compile-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: labs/05-cmake-targets-properties-dependencies/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build build --verbose
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+      - name: Run on Linux
+        if: runner.os == 'Linux'
+        run: ./build/DeviceSimulator
+      - name: Run on Windows
+        if: runner.os == 'Windows'
+        run: ./build/DeviceSimulator.exe
