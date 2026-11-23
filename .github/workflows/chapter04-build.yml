@@ -1,0 +1,37 @@
+name: Chapter 04 - EmbeddedCore CMake Lab
+on:
+  push:
+    paths:
+      - 'labs/04-first-real-cmake-project/**'
+      - '.github/workflows/chapter04-build.yml'
+  pull_request:
+    paths:
+      - 'labs/04-first-real-cmake-project/**'
+      - '.github/workflows/chapter04-build.yml'
+  workflow_dispatch:
+
+jobs:
+  cmake-lab:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: labs/04-first-real-cmake-project/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure (Linux)
+        if: runner.os == 'Linux'
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - name: Configure (Windows)
+        if: runner.os == 'Windows'
+        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+      - name: Build
+        run: cmake --build build --config Release
+      - name: Run (Linux)
+        if: runner.os == 'Linux'
+        run: ./build/DeviceSimulator
+      - name: Run (Windows)
+        if: runner.os == 'Windows'
+        run: ./build/Release/DeviceSimulator.exe
