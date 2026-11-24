@@ -1,0 +1,19 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {"major": 3, "minor": 20, "patch": 0},
+  "configurePresets": [
+    {"name":"linux-debug","displayName":"Linux Ninja Debug","generator":"Ninja","binaryDir":"${sourceDir}/build/linux-debug","cacheVariables":{"CMAKE_BUILD_TYPE":"Debug"},"condition":{"type":"equals","lhs":"${hostSystemName}","rhs":"Linux"}},
+    {"name":"linux-release","displayName":"Linux Ninja Release","generator":"Ninja","binaryDir":"${sourceDir}/build/linux-release","cacheVariables":{"CMAKE_BUILD_TYPE":"Release"},"condition":{"type":"equals","lhs":"${hostSystemName}","rhs":"Linux"}},
+    {"name":"windows-msvc-debug","displayName":"Windows Ninja MSVC Debug","generator":"Ninja","binaryDir":"${sourceDir}/build/windows-msvc-debug","cacheVariables":{"CMAKE_BUILD_TYPE":"Debug"},"condition":{"type":"equals","lhs":"${hostSystemName}","rhs":"Windows"}}
+  ],
+  "buildPresets": [
+    {"name":"linux-debug","configurePreset":"linux-debug"},
+    {"name":"linux-release","configurePreset":"linux-release"},
+    {"name":"windows-msvc-debug","configurePreset":"windows-msvc-debug"}
+  ],
+  "testPresets": [
+    {"name":"linux-debug","configurePreset":"linux-debug","output":{"outputOnFailure":true}},
+    {"name":"linux-release","configurePreset":"linux-release","output":{"outputOnFailure":true}},
+    {"name":"windows-msvc-debug","configurePreset":"windows-msvc-debug","output":{"outputOnFailure":true}}
+  ]
+}
