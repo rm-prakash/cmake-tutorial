@@ -1,0 +1,23 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 20, "patch": 0 },
+  "configurePresets": [
+    { "name": "ninja-static", "generator": "Ninja", "binaryDir": "${sourceDir}/build/ninja-static", "cacheVariables": { "BUILD_SHARED_LIBS": "OFF", "CMAKE_BUILD_TYPE": "Debug" } },
+    { "name": "ninja-shared", "generator": "Ninja", "binaryDir": "${sourceDir}/build/ninja-shared", "cacheVariables": { "BUILD_SHARED_LIBS": "ON", "CMAKE_BUILD_TYPE": "Debug" } },
+    { "name": "multi-static", "generator": "Ninja Multi-Config", "binaryDir": "${sourceDir}/build/multi-static", "cacheVariables": { "BUILD_SHARED_LIBS": "OFF" } },
+    { "name": "multi-shared", "generator": "Ninja Multi-Config", "binaryDir": "${sourceDir}/build/multi-shared", "cacheVariables": { "BUILD_SHARED_LIBS": "ON" } }
+  ],
+  "buildPresets": [
+    { "name": "static", "configurePreset": "ninja-static" },
+    { "name": "shared", "configurePreset": "ninja-shared" },
+    { "name": "multi-static-debug", "configurePreset": "multi-static", "configuration": "Debug" },
+    { "name": "multi-shared-debug", "configurePreset": "multi-shared", "configuration": "Debug" },
+    { "name": "multi-shared-release", "configurePreset": "multi-shared", "configuration": "Release" }
+  ],
+  "testPresets": [
+    { "name": "static", "configurePreset": "ninja-static", "output": { "outputOnFailure": true } },
+    { "name": "shared", "configurePreset": "ninja-shared", "output": { "outputOnFailure": true } },
+    { "name": "multi-shared-debug", "configurePreset": "multi-shared", "configuration": "Debug", "output": { "outputOnFailure": true } },
+    { "name": "multi-shared-release", "configurePreset": "multi-shared", "configuration": "Release", "output": { "outputOnFailure": true } }
+  ]
+}
