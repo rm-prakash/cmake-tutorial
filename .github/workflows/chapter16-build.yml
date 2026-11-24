@@ -1,0 +1,72 @@
+name: Chapter 16 - five-platform CI
+on:
+  push:
+    paths:
+      - 'labs/16-production-cicd-five-platforms/**'
+      - '.github/workflows/chapter16-build.yml'
+  pull_request:
+    paths:
+      - 'labs/16-production-cicd-five-platforms/**'
+      - '.github/workflows/chapter16-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {target: windows-x64, runner: windows-latest}
+          - {target: linux-x86_64, runner: ubuntu-latest}
+          - {target: android-armeabi-v7a, runner: ubuntu-latest}
+          - {target: android-arm64-v8a, runner: ubuntu-latest}
+          - {target: android-x86_64, runner: ubuntu-latest}
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: MSVC developer tools
+        if: matrix.target == 'windows-x64'
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Install pinned Android NDK
+        if: startsWith(matrix.target, 'android-')
+        shell: bash
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'ndk;27.2.12479018'
+          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.2.12479018" >> "$GITHUB_ENV"
+      - name: Build and test Windows Debug and Release
+        if: matrix.target == 'windows-x64'
+        shell: pwsh
+        working-directory: labs/16-production-cicd-five-platforms/solution
+        run: |
+          ./scripts/ci-build.ps1 -Config Debug
+          ./scripts/ci-build.ps1 -Config Release
+      - name: Build Linux or Android Debug and Release
+        if: matrix.target != 'windows-x64'
+        shell: bash
+        working-directory: labs/16-production-cicd-five-platforms/solution
+        run: |
+          bash scripts/ci-build.sh '${{ matrix.target }}' Debug
+          bash scripts/ci-build.sh '${{ matrix.target }}' Release
+      - name: Verify package checksums and manifests
+        shell: python
+        working-directory: labs/16-production-cicd-five-platforms/solution
+        run: |
+          from pathlib import Path
+          import subprocess,sys
+          d=Path('out/artifacts')
+          manifests=sorted(d.glob('*.json'))
+          assert len(manifests)==2, 'Expected exactly two configuration manifests'
+          for m in manifests:
+              a=m.with_suffix('.tar.gz')
+              c=m.with_suffix('.sha256')
+              subprocess.run([sys.executable,'scripts/verify-package.py',str(a),str(m),str(c)],check=True)
+      - name: Upload unique matrix artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: embeddedcore-${{ matrix.target }}
+          path: labs/16-production-cicd-five-platforms/solution/out/artifacts/
+          if-no-files-found: error

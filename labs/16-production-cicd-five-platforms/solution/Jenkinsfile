@@ -1,0 +1,41 @@
+// Educational Jenkins Scripted Pipeline. Set agent labels to match your agents.
+// Android agents require a pinned NDK and ANDROID_NDK_HOME; Windows agents
+// must expose an initialized MSVC toolchain plus CMake, Ninja and Python.
+def targets = [
+  [id: 'windows-x64', label: 'windows-cmake'],
+  [id: 'linux-x86_64', label: 'linux-cmake'],
+  [id: 'android-armeabi-v7a', label: 'android-ndk'],
+  [id: 'android-arm64-v8a', label: 'android-ndk'],
+  [id: 'android-x86_64', label: 'android-ndk']
+]
+def branches = [:]
+targets.each { item ->
+  def target = item.id
+  def agentLabel = item.label
+  branches[target] = {
+    node(agentLabel) {
+      stage("${target}: checkout") { checkout scm }
+      dir('labs/16-production-cicd-five-platforms/solution') {
+        try {
+          ['Debug', 'Release'].each { cfg ->
+            stage("${target}: ${cfg}") {
+              if (isUnix()) {
+                sh "bash scripts/ci-build.sh ${target} ${cfg}"
+              } else {
+                bat "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\ci-build.ps1 -Target ${target} -Config ${cfg}"
+              }
+            }
+          }
+        } finally {
+          stage("${target}: reports") {
+            junit testResults: 'build/**/producer-junit.xml,build-consumer/**/consumer-junit.xml', allowEmptyResults: true
+            archiveArtifacts artifacts: 'out/artifacts/*', allowEmptyArchive: true, fingerprint: true
+          }
+        }
+      }
+    }
+  }
+}
+parallel branches
+// No repository publication occurs from this sample pipeline.
+// Add a distinct protected and approved promotion job for release credentials.
