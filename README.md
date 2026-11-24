@@ -2,7 +2,6 @@
 
 A free, university-style CMake course, taught through an evolving, fictional embedded-device project: **EmbeddedCore** (library) and **DeviceSimulator** (application). No proprietary source code or private infrastructure is required.
 
-> **Status:** Chapter 1 is written and includes a runnable lab. Chapters 2–16 are planned, not yet authored.
 
 ## Start here
 
