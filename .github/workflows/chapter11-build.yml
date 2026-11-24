@@ -1,0 +1,39 @@
+name: Chapter 11 - Package and FetchContent
+on:
+  push:
+    paths:
+      - 'labs/11-third-party-dependencies-find-package-fetchcontent/**'
+      - '.github/workflows/chapter11-build.yml'
+  pull_request:
+    paths:
+      - 'labs/11-third-party-dependencies-find-package-fetchcontent/**'
+      - '.github/workflows/chapter11-build.yml'
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        mode: [FETCH, PACKAGE]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Ninja on Ubuntu
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - name: Package dependency
+        if: matrix.mode == 'PACKAGE'
+        run: |
+          cmake -S labs/11-third-party-dependencies-find-package-fetchcontent/solution/vendor/telemetrycodec -B build/codec -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/build/prefix"
+          cmake --build build/codec --config Debug
+          cmake --install build/codec --config Debug
+      - name: Configure consumer
+        run: |
+          cmake -S labs/11-third-party-dependencies-find-package-fetchcontent/solution -B build/consumer -DEMBEDDEDCORE_DEPENDENCY_MODE=${{ matrix.mode }} -DCMAKE_PREFIX_PATH="$GITHUB_WORKSPACE/build/prefix" -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build build/consumer --config Debug
+      - name: Test
+        run: ctest --test-dir build/consumer -C Debug --output-on-failure

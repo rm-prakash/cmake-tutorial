@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 20, "patch": 0 },
+  "configurePresets": [
+    { "name": "fetch-debug", "generator": "Ninja", "binaryDir": "${sourceDir}/build/fetch-debug", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "EMBEDDEDCORE_DEPENDENCY_MODE": "FETCH" } },
+    { "name": "package-debug", "generator": "Ninja", "binaryDir": "${sourceDir}/build/package-debug", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "EMBEDDEDCORE_DEPENDENCY_MODE": "PACKAGE" } }
+  ],
+  "buildPresets": [
+    { "name": "fetch-debug", "configurePreset": "fetch-debug" },
+    { "name": "package-debug", "configurePreset": "package-debug" }
+  ],
+  "testPresets": [
+    { "name": "fetch-debug", "configurePreset": "fetch-debug", "output": { "outputOnFailure": true } },
+    { "name": "package-debug", "configurePreset": "package-debug", "output": { "outputOnFailure": true } }
+  ]
+}
