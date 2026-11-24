@@ -1,10 +1,12 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 08](../08-static-shared-libraries-binary-compatibility/README.md) · [Chapter 10 →](../10-modular-projects-and-add-subdirectory/README.md)
+
 # Chapter 09 — DLLs, Runtime Dependencies, RPATH, and Deployment
 
 > **Modern CMake University · Module III: Deployable C++ Systems · Chapter 9 of 16**  
 > **Lab application:** DeviceSimulator · **Library:** EmbeddedCore · **Level:** Intermediate/Advanced  
 > **Time:** 5–7 hours including experiments · **Primary environments:** Windows/MSVC and Linux/GCC · **Architecture extensions:** Android ARMv7, ARM64, x86-64
 
-**Course navigation:** [Chapter 08](../08-static-shared-libraries-binary-compatibility/README.md) · Chapter 09 · [Chapter 10](../10-modular-projects/README.md) *(coming next)*
+**Course navigation:** [Chapter 08](../08-static-shared-libraries-binary-compatibility/README.md) · Chapter 09 · [Chapter 10](../10-modular-projects-and-add-subdirectory/README.md) *(coming next)*
 
 ## 1. The problem: “It builds on my computer!”
 
@@ -766,3 +768,8 @@ A build isn't deployment-ready just because the linker produced an executable. I
 ## Next chapter: Chapter 10 — Modular CMake Projects and `add_subdirectory()`
 
 Now that we can build and deploy a small library graph, we'll refactor the project into real modules with their own `CMakeLists.txt` files, preserve target interfaces across directory boundaries, and show why modern CMake dependency modeling scales better than global flags and manual file lists.
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 08](../08-static-shared-libraries-binary-compatibility/README.md) · [Chapter 10 →](../10-modular-projects-and-add-subdirectory/README.md)
+

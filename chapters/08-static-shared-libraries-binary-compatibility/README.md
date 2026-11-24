@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 07](../07-debug-release-build-configurations/README.md) · [Chapter 09 →](../09-runtime-dependencies-and-deployment/README.md)
+
 # Chapter 08 — Static and Shared Libraries: Linking, DLLs, and Binary Compatibility
 
 > **Modern CMake University — From First Principles to Production CI/CD**  
@@ -5,7 +7,7 @@
 > Project: **EmbeddedCore** library + **DeviceSimulator** executable  
 > Primary host: Windows x64 / MSVC 2019; alternate host: Linux x86-64 / GCC; architectural extensions: Android ARMv7, ARM64, x86-64
 
-[← Chapter 7](../07-debug-release-build-configurations/README.md) · [Course home](../../README.md) · [Chapter 9 →](../09-dll-runtime-dependencies-deployment/README.md)
+[← Chapter 7](../07-debug-release-build-configurations/README.md) · [Course home](../../README.md) · [Chapter 9 →](../09-runtime-dependencies-and-deployment/README.md)
 
 ## Chapter purpose
 
@@ -737,3 +739,8 @@ Modern CMake models these choices with targets and usage requirements. The corre
 - [CMake `GenerateExportHeader`](https://cmake.org/cmake/help/latest/module/GenerateExportHeader.html)
 - [Microsoft: Exporting from a DLL](https://learn.microsoft.com/en-us/cpp/build/exporting-from-a-dll)
 - [Android NDK ABI Guide](https://developer.android.com/ndk/guides/abis)
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 07](../07-debug-release-build-configurations/README.md) · [Chapter 09 →](../09-runtime-dependencies-and-deployment/README.md)
+

@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 03](../03-make-ninja-and-cmake/README.md) · [Chapter 05 →](../05-cmake-targets-properties-dependencies/README.md)
+
 # Chapter 04 — Your First Real CMake Project: Configuring and Building EmbeddedCore
 
 > **Modern CMake University — Module I: Build Systems Foundations**  
@@ -641,3 +643,8 @@ The answer key is maintained in `solutions/04-first-real-cmake-project/quiz-answ
 In the next chapter we'll investigate how CMake targets work and why modern target-oriented commands are preferable to global compiler and linker settings. We will continue evolving `embeddedcore` and `DeviceSimulator` rather than introducing an unrelated project.
 
 [← Chapter 03](../03-make-ninja-and-cmake/README.md) · [Course syllabus](../../COURSE-SYLLABUS.md) · **Chapter 05 →** (forthcoming)
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 03](../03-make-ninja-and-cmake/README.md) · [Chapter 05 →](../05-cmake-targets-properties-dependencies/README.md)
+

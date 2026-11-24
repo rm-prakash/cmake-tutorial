@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 02](../02-compilers-linkers-and-libraries/README.md) · [Chapter 04 →](../04-first-real-cmake-project/README.md)
+
 # Chapter 03 — Make, Ninja, and CMake: Understanding Build Systems
 
 > **Modern CMake University — Module I: Build Systems Foundations**  
@@ -618,4 +620,9 @@ Next: **Installing CMake and Building Your First Real CMake Project**. We will m
 
 ---
 
-**Navigation:** [← Chapter 02](../02-compilers-linkers-and-libraries/README.md) · [Lab and runnable code](../../labs/03-make-ninja-and-cmake/README.md) · [Chapter 04 →](../04-first-cmake-project/README.md)
+**Navigation:** [← Chapter 02](../02-compilers-linkers-and-libraries/README.md) · [Lab and runnable code](../../labs/03-make-ninja-and-cmake/README.md) · [Chapter 04 →](../04-first-real-cmake-project/README.md)
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 02](../02-compilers-linkers-and-libraries/README.md) · [Chapter 04 →](../04-first-real-cmake-project/README.md)
+

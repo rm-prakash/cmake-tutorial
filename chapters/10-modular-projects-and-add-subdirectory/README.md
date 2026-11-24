@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 09](../09-runtime-dependencies-and-deployment/README.md) · [Chapter 11 →](../11-third-party-dependencies-find-package-fetchcontent/README.md)
+
 # Chapter 10 — Modular CMake Projects and `add_subdirectory()`
 
 **Modern CMake University: From First Principles to Production CI/CD**  
@@ -908,3 +910,8 @@ This approach prepares us for the next major challenge: **dependencies that do n
 - [CMake — INTERFACE libraries](https://cmake.org/cmake/help/latest/command/add_library.html#interface-libraries)
 - [CMake — cmake --graphviz](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-graphviz)
 - [Android NDK — CMake](https://developer.android.com/ndk/guides/cmake)
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 09](../09-runtime-dependencies-and-deployment/README.md) · [Chapter 11 →](../11-third-party-dependencies-find-package-fetchcontent/README.md)
+

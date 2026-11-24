@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · Start of course · [Chapter 02 →](../02-compilers-linkers-and-libraries/README.md)
+
 # Chapter 01 — How C++ Source Becomes an Executable: Building DeviceSimulator
 
 > **Modern CMake: From First Principles to Production CI/CD**  
@@ -407,3 +409,8 @@ Record your answers before viewing the separate solution file.
 ## Next chapter
 
 **Chapter 02 — Compilers, Linkers, Object Files and Libraries** examines preprocessing, assembly, linking, symbols, static libraries and shared libraries in more depth. We will split the device simulation into multiple source files and intentionally diagnose linker failures.
+
+---
+
+**Course navigation:** [Course home](../../README.md) · Start of course · [Chapter 02 →](../02-compilers-linkers-and-libraries/README.md)
+

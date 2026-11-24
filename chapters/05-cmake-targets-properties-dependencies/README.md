@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 04](../04-first-real-cmake-project/README.md) · [Chapter 06 →](../06-variables-scopes-and-include-directories/README.md)
+
 # Chapter 05 — Understanding CMake Targets, Properties, and Dependencies
 
 > **Modern CMake University — Module II: Core CMake**  
@@ -681,9 +683,14 @@ Attempt these before opening `solutions/05-cmake-targets-properties-dependencies
 
 ## Next chapter
 
-**[Chapter 06 — Variables, Scopes, Headers and Include Directories](../06-variables-and-headers/README.md)**
+**[Chapter 06 — Variables, Scopes, Headers and Include Directories](../06-variables-scopes-and-include-directories/README.md)**
 
 We'll explore normal variables, cache variables, function and directory scopes, path handling, include search rules and why target-level configuration remains preferable to global directory state.
 
 **Lab deliverables:** `labs/05-cmake-targets-properties-dependencies/`  
 **Answer key:** `solutions/05-cmake-targets-properties-dependencies/quiz-answers.md`
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 04](../04-first-real-cmake-project/README.md) · [Chapter 06 →](../06-variables-scopes-and-include-directories/README.md)
+

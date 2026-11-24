@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 15](../15-presets-ctest-install-package-exports/README.md) · End of core curriculum
+
 # Chapter 16 — Production CI/CD for C++: Jenkins, GitHub Actions, and Five-Platform Release Engineering
 
 > **Modern CMake University · Module VI · Chapter 16 of 16**  
@@ -635,3 +637,8 @@ The enduring engineering principle is this: **a release is not a binary alone; i
 - [Jenkins: Recording tests and artifacts](https://www.jenkins.io/doc/pipeline/tour/tests-and-artifacts/)
 
 **Course completion:** Chapters 1–16 now form a progressive curriculum. Possible next modules include `CPack`, code signing, SBOM/provenance generation, FIPS operational requirements, hermetic build containers, Android device farms, or compiler ABI regression testing.
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 15](../15-presets-ctest-install-package-exports/README.md) · End of core curriculum
+

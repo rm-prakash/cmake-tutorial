@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 06](../06-variables-scopes-and-include-directories/README.md) · [Chapter 08 →](../08-static-shared-libraries-binary-compatibility/README.md)
+
 # Chapter 07 — Debug, Release, Build Configurations, and Generators
 
 > **Modern CMake University — Module II: Core CMake**  
@@ -574,3 +576,8 @@ Choose the best answer unless multiple options are explicitly requested. The ans
 ---
 
 **Course navigation:** [← Chapter 06](../06-variables-scopes-and-include-directories/README.md) · [Course syllabus](../../COURSE-SYLLABUS.md) · Chapter 08 → (forthcoming)
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 06](../06-variables-scopes-and-include-directories/README.md) · [Chapter 08 →](../08-static-shared-libraries-binary-compatibility/README.md)
+

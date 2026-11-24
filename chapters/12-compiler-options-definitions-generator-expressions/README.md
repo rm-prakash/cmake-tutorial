@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 11](../11-third-party-dependencies-find-package-fetchcontent/README.md) · [Chapter 13 →](../13-cross-compilation-toolchains-architectures-abis/README.md)
+
 # Chapter 12 — Compiler Options, Compile Definitions, and Generator Expressions
 
 > **Modern CMake University · Chapter 12 of 16 · Module IV: Professional Build Configuration**  
@@ -875,3 +877,8 @@ Answers are in `solutions/12-compiler-options-definitions-generator-expressions/
 We'll turn our configuration policies into actual cross-platform builds. The next chapter explains what toolchain files configure, how host and target triples differ, why compilers and libraries must match the target ABI, and how to create separate Windows x64, Linux x86-64, and Android ARMv7 / ARM64 / x86-64 builds. We'll also learn to inspect real binary formats and architecture metadata rather than trusting filenames.
 
 **Course sequence:** [Chapter 11](../11-third-party-dependencies-find-package-fetchcontent/README.md) ← **Chapter 12** → Chapter 13 (coming next).
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 11](../11-third-party-dependencies-find-package-fetchcontent/README.md) · [Chapter 13 →](../13-cross-compilation-toolchains-architectures-abis/README.md)
+

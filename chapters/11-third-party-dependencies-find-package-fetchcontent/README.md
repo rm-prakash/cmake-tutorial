@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 10](../10-modular-projects-and-add-subdirectory/README.md) · [Chapter 12 →](../12-compiler-options-definitions-generator-expressions/README.md)
+
 # Chapter 11 — Third-Party Dependencies: `find_package()`, Imported Targets, and `FetchContent`
 
 > **Modern CMake University · Chapter 11 of 16 · Module IV: Dependency Management**  
@@ -795,3 +797,8 @@ In Chapter 12 we'll control compiler flags, compile definitions, and generator e
 - [CMake: Cross Compiling](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling)
 
 **Next chapter: Chapter 12 — Compiler Options, Compile Definitions, and Generator Expressions.**
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 10](../10-modular-projects-and-add-subdirectory/README.md) · [Chapter 12 →](../12-compiler-options-definitions-generator-expressions/README.md)
+

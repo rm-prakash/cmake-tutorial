@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 01](../01-source-to-executable/README.md) · [Chapter 03 →](../03-make-ninja-and-cmake/README.md)
+
 # Chapter 02 — Compilers, Linkers, Object Files, and Libraries
 
 > **Modern CMake University — Module I: Build Systems Foundations**  
@@ -502,3 +504,8 @@ In Chapter 3, we'll replace our manual MSVC and GCC commands with a build system
 
 **Previous:** [Chapter 1 — From C++ Source to Executable](../01-source-to-executable/README.md)  
 **Next:** Chapter 3 — Make, Ninja, and CMake: Understanding Build Systems
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 01](../01-source-to-executable/README.md) · [Chapter 03 →](../03-make-ninja-and-cmake/README.md)
+

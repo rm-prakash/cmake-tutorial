@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 12](../12-compiler-options-definitions-generator-expressions/README.md) · [Chapter 14 →](../14-multiplatform-dependencies-openssl-artifacts/README.md)
+
 # Chapter 13 — Cross-Compilation, Toolchains, Architectures, and ABIs
 
 > **Modern CMake University — From First Principles to Production CI/CD**  
@@ -762,3 +764,8 @@ Full suggested answers are available separately at `solutions/13-cross-compilati
 Now that EmbeddedCore can select the *correct target toolchain*, we will design a **fail-closed dependency resolver**. We'll distinguish Windows/Linux/Android binary variants; integrate `find_package(OpenSSL)` and imported targets; select exact artifacts from an internal-style repository; verify architecture and checksums; explain why static archives don't absorb dependent libraries; and demonstrate safe behavior when a required compliance-specific package is unavailable.
 
 **Chapter 14 will use fictional dependency coordinates and downloadable public-source examples only—never real internal repository URLs, credentials, or proprietary cryptography distributions.**
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 12](../12-compiler-options-definitions-generator-expressions/README.md) · [Chapter 14 →](../14-multiplatform-dependencies-openssl-artifacts/README.md)
+

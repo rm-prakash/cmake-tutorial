@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 13](../13-cross-compilation-toolchains-architectures-abis/README.md) · [Chapter 15 →](../15-presets-ctest-install-package-exports/README.md)
+
 # Chapter 14 — Multi-Platform Dependencies: OpenSSL, Android, Package Integrity, and Artifact Repositories
 
 > **Modern CMake University · Module V: Multi-Platform Build Engineering · Chapter 14 of 16**  
@@ -811,3 +813,8 @@ Attempt before reading `solutions/14-multiplatform-dependencies-openssl-artifact
 ## Next chapter — Chapter 15: CMake Presets, CTest, Installation, and Package Exports
 
 We now know how to **consume** libraries for the correct target. Next, we will learn to **publish EmbeddedCore as a real CMake package**: install headers and binaries, produce `EmbeddedCoreConfig.cmake` and `EmbeddedCoreTargets.cmake`, export imported targets, define package dependencies, validate a clean external consumer, and organize presets and tests for CI. This is the bridge from cross-platform dependency management to a reusable SDK.
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 13](../13-cross-compilation-toolchains-architectures-abis/README.md) · [Chapter 15 →](../15-presets-ctest-install-package-exports/README.md)
+

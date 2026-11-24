@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 14](../14-multiplatform-dependencies-openssl-artifacts/README.md) · [Chapter 16 →](../16-production-cicd-five-platforms/README.md)
+
 # Chapter 15 — CMake Presets, CTest, Installation, Package Exports, and Independent Consumers
 
 > **Modern CMake University — Module VI: Production-Ready Build Artifacts**  
@@ -828,3 +830,8 @@ Your public library now has the tools to be tested, installed, versioned, export
 ---
 
 **Next chapter — Chapter 16:** Jenkins, GitHub Actions, build matrices, artifact repositories, traceability and production CI/CD for Windows x64, Linux x86-64 and three Android ABIs.
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 14](../14-multiplatform-dependencies-openssl-artifacts/README.md) · [Chapter 16 →](../16-production-cicd-five-platforms/README.md)
+

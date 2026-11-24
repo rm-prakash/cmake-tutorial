@@ -1,3 +1,5 @@
+**Course navigation:** [Course home](../../README.md) · [← Chapter 05](../05-cmake-targets-properties-dependencies/README.md) · [Chapter 07 →](../07-debug-release-build-configurations/README.md)
+
 # Chapter 06 — CMake Variables, Scopes, Paths, and Include Directories
 
 > **Modern CMake University — Module II: Core CMake**  
@@ -775,4 +777,9 @@ You are ready for Chapter 7 when you can **predict variable scope**, **trace inc
 
 In Chapter 7, we'll compare Debug versus Release compiler behavior, `CMAKE_BUILD_TYPE`, single-config and multi-config generators, and how Ninja Multi-Config can produce both kinds of output from one target-specific build tree. Our DeviceSimulator will gain configuration-dependent diagnostics, and you'll learn to read the actual compiler options applied to each build.
 
-[← Chapter 05](../05-cmake-targets-properties-dependencies/README.md) · [Course home](../../README.md) · [Chapter 07 →](../07-build-configurations/README.md) *(coming next)*
+[← Chapter 05](../05-cmake-targets-properties-dependencies/README.md) · [Course home](../../README.md) · [Chapter 07 →](../07-debug-release-build-configurations/README.md) *(coming next)*
+
+---
+
+**Course navigation:** [Course home](../../README.md) · [← Chapter 05](../05-cmake-targets-properties-dependencies/README.md) · [Chapter 07 →](../07-debug-release-build-configurations/README.md)
+
