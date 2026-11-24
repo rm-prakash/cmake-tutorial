@@ -1,0 +1,36 @@
+name: Chapter 10 modular project
+on:
+  push:
+    paths:
+      - 'labs/10-modular-projects-and-add-subdirectory/**'
+      - '.github/workflows/chapter10-build.yml'
+  pull_request:
+    paths:
+      - 'labs/10-modular-projects-and-add-subdirectory/**'
+      - '.github/workflows/chapter10-build.yml'
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            generator: Ninja
+          - os: windows-latest
+            generator: Ninja
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: labs/10-modular-projects-and-add-subdirectory/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up MSVC environment for Windows
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Configure
+        run: cmake -S . -B build/ci -G "${{ matrix.generator }}" -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build build/ci --parallel 2
+      - name: Test
+        run: ctest --test-dir build/ci --output-on-failure
