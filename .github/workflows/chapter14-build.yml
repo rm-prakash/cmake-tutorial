@@ -1,0 +1,56 @@
+name: Chapter 14 - Multi-platform Dependency Lab
+on:
+  push:
+    paths:
+      - 'chapters/14-multiplatform-dependencies-openssl-artifacts/**'
+      - 'labs/14-multiplatform-dependencies-openssl-artifacts/**'
+      - '.github/workflows/chapter14-build.yml'
+  pull_request:
+    paths:
+      - 'labs/14-multiplatform-dependencies-openssl-artifacts/**'
+      - '.github/workflows/chapter14-build.yml'
+  workflow_dispatch:
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/14-multiplatform-dependencies-openssl-artifacts/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build libssl-dev
+      - name: Build fixture
+        run: bash scripts/build-fixture.sh
+      - name: Verify and build fixture consumer
+        run: |
+          cmake --preset linux-fixture
+          cmake --build --preset linux-fixture
+          ctest --preset linux-fixture
+      - name: Build real OpenSSL mode
+        run: |
+          cmake --preset linux-openssl
+          cmake --build --preset linux-openssl
+          ctest --preset linux-openssl
+      - name: Test rejection of invalid packages and profiles
+        run: bash scripts/test-failures.sh
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: labs/14-multiplatform-dependencies-openssl-artifacts/solution
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - name: Build fixture and consume on Windows
+        shell: pwsh
+        run: |
+          .\scripts\build-fixture.ps1
+          cmake --preset windows-fixture
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cmake --build --preset windows-fixture
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          ctest --preset windows-fixture
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

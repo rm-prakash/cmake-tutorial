@@ -1,0 +1,24 @@
+{
+  "version": 4,
+  "cmakeMinimumRequired": {"major": 3, "minor": 21, "patch": 0},
+  "configurePresets": [
+    {"name": "linux-fixture", "generator": "Ninja", "binaryDir": "${sourceDir}/build/linux-fixture",
+     "cacheVariables": {"CMAKE_BUILD_TYPE": "Debug", "EMBEDDEDCORE_PROVIDER": "fixture",
+       "EMBEDDEDCORE_ARTIFACT_ROOT": "${sourceDir}/artifacts/linux-x86_64"}},
+    {"name": "linux-openssl", "generator": "Ninja", "binaryDir": "${sourceDir}/build/linux-openssl",
+     "cacheVariables": {"CMAKE_BUILD_TYPE": "Debug", "EMBEDDEDCORE_PROVIDER": "openssl"}},
+    {"name": "windows-fixture", "generator": "Ninja", "binaryDir": "${sourceDir}/build/windows-fixture",
+     "cacheVariables": {"CMAKE_BUILD_TYPE": "Debug", "EMBEDDEDCORE_PROVIDER": "fixture",
+       "EMBEDDEDCORE_ARTIFACT_ROOT": "${sourceDir}/artifacts/windows-x64"}}
+  ],
+  "buildPresets": [
+    {"name":"linux-fixture", "configurePreset":"linux-fixture"},
+    {"name":"linux-openssl", "configurePreset":"linux-openssl"},
+    {"name":"windows-fixture", "configurePreset":"windows-fixture"}
+  ],
+  "testPresets": [
+    {"name":"linux-fixture", "configurePreset":"linux-fixture", "output":{"outputOnFailure":true}},
+    {"name":"linux-openssl", "configurePreset":"linux-openssl", "output":{"outputOnFailure":true}},
+    {"name":"windows-fixture", "configurePreset":"windows-fixture", "output":{"outputOnFailure":true}}
+  ]
+}
