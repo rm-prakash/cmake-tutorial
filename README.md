@@ -36,4 +36,10 @@ Open an issue to report unclear explanations or broken commands. When adding a n
 
 ## Licensing
 
-**License not selected yet.** Before publicly releasing this repository, choose a license for the prose (for example, CC BY 4.0) and one for sample code (for example, MIT), if you want reuse under those terms. Do not add a license without reviewing its implications.
+This is licensed under the MIT License.
+
+Unless otherwise noted, this license applies to the original educational chapters, documentation, diagrams, C++ examples, CMake projects, build scripts, and CI/CD workflows in this repository.
+
+Copyright © 2026 rm-prakash.
+
+Third-party materials remain subject to their respective licenses.
