@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+  "configurePresets": [
+    {"name":"linux-ninja-debug", "displayName":"Linux Ninja Debug", "generator":"Ninja", "binaryDir":"${sourceDir}/build/linux-debug", "cacheVariables":{"CMAKE_BUILD_TYPE":"Debug"}},
+    {"name":"linux-ninja-release", "displayName":"Linux Ninja Release", "generator":"Ninja", "binaryDir":"${sourceDir}/build/linux-release", "cacheVariables":{"CMAKE_BUILD_TYPE":"Release"}},
+    {"name":"multi", "displayName":"Ninja Multi-Config", "generator":"Ninja Multi-Config", "binaryDir":"${sourceDir}/build/multi"}
+  ],
+  "buildPresets": [
+    {"name":"linux-debug","configurePreset":"linux-ninja-debug"},
+    {"name":"linux-release","configurePreset":"linux-ninja-release"},
+    {"name":"multi-debug","configurePreset":"multi","configuration":"Debug"},
+    {"name":"multi-release","configurePreset":"multi","configuration":"Release"}
+  ],
+  "testPresets": [
+    {"name":"linux-debug","configurePreset":"linux-ninja-debug","output":{"outputOnFailure":true}},
+    {"name":"linux-release","configurePreset":"linux-ninja-release","output":{"outputOnFailure":true}},
+    {"name":"multi-debug","configurePreset":"multi","configuration":"Debug","output":{"outputOnFailure":true}},
+    {"name":"multi-release","configurePreset":"multi","configuration":"Release","output":{"outputOnFailure":true}}
+  ]
+}

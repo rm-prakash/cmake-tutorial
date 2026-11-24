@@ -1,0 +1,36 @@
+name: Chapter 09 runtime deployment
+on:
+  push:
+    paths:
+      - 'labs/09-runtime-dependencies-and-deployment/**'
+      - '.github/workflows/chapter09-build.yml'
+  pull_request:
+    paths:
+      - 'labs/09-runtime-dependencies-and-deployment/**'
+      - '.github/workflows/chapter09-build.yml'
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: labs/09-runtime-dependencies-and-deployment/solution
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build/ci -G "Ninja Multi-Config"
+      - name: Build Debug
+        run: cmake --build build/ci --config Debug
+      - name: Test Debug
+        run: ctest --test-dir build/ci -C Debug --output-on-failure
+      - name: Install Debug
+        run: cmake --install build/ci --config Debug --prefix stage/ci
+      - name: Run installed application (Linux)
+        if: runner.os == 'Linux'
+        run: ./stage/ci/bin/DeviceSimulator
+      - name: Run installed application (Windows)
+        if: runner.os == 'Windows'
+        run: ./stage/ci/bin/DeviceSimulator.exe
