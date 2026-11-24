@@ -1,0 +1,88 @@
+{
+  "version": 5,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "ninja-debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/stage/debug"
+      }
+    },
+    {
+      "name": "ninja-release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/stage/release"
+      }
+    },
+    {
+      "name": "ninja-multi",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build/multi",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/stage/multi"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "ninja-debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "ninja-release"
+    },
+    {
+      "name": "multi-debug",
+      "configurePreset": "ninja-multi",
+      "configuration": "Debug"
+    },
+    {
+      "name": "multi-release",
+      "configurePreset": "ninja-multi",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "ninja-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "release",
+      "configurePreset": "ninja-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "multi-debug",
+      "configurePreset": "ninja-multi",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "multi-release",
+      "configurePreset": "ninja-multi",
+      "configuration": "Release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

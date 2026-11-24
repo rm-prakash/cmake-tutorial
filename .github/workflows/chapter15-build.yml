@@ -1,0 +1,34 @@
+name: Chapter 15 package and consume
+on:
+  push:
+    paths:
+      - 'labs/15-presets-ctest-install-package-exports/**'
+      - '.github/workflows/chapter15-build.yml'
+  pull_request:
+    paths:
+      - 'labs/15-presets-ctest-install-package-exports/**'
+      - '.github/workflows/chapter15-build.yml'
+jobs:
+  package-consumer:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        configuration: [Debug, Release]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure producer
+        run: cmake -S labs/15-presets-ctest-install-package-exports/solution -B build/ch15/producer -G "Ninja Multi-Config"
+      - name: Build producer
+        run: cmake --build build/ch15/producer --config ${{ matrix.configuration }}
+      - name: Test producer
+        run: ctest --test-dir build/ch15/producer -C ${{ matrix.configuration }} --output-on-failure
+      - name: Install package
+        run: cmake --install build/ch15/producer --config ${{ matrix.configuration }} --prefix ${{ github.workspace }}/stage/ch15
+      - name: Configure independent consumer
+        run: cmake -S labs/15-presets-ctest-install-package-exports/independent-consumer -B build/ch15/consumer -G "Ninja Multi-Config" "-DCMAKE_PREFIX_PATH=${{ github.workspace }}/stage/ch15"
+      - name: Build independent consumer
+        run: cmake --build build/ch15/consumer --config ${{ matrix.configuration }}
+      - name: Test independent consumer
+        run: ctest --test-dir build/ch15/consumer -C ${{ matrix.configuration }} --output-on-failure

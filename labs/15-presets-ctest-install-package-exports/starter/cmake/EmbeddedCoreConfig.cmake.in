@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+if(@EMBEDDEDCORE_WITH_TELEMETRY@)
+  find_dependency(TelemetryCodec 1.2 CONFIG)
+endif()
+include("${CMAKE_CURRENT_LIST_DIR}/EmbeddedCoreTargets.cmake")
+check_required_components(EmbeddedCore)
