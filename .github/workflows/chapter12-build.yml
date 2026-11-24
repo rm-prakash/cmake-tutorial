@@ -1,0 +1,31 @@
+name: Chapter 12 - Compiler Flags and Generator Expressions
+on:
+  push:
+    paths:
+      - 'labs/12-compiler-options-definitions-generator-expressions/**'
+      - '.github/workflows/chapter12-build.yml'
+  pull_request:
+    paths:
+      - 'labs/12-compiler-options-definitions-generator-expressions/**'
+      - '.github/workflows/chapter12-build.yml'
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/12-compiler-options-definitions-generator-expressions/solution
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build/ci -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake --build build/ci --parallel
+      - run: ctest --test-dir build/ci --output-on-failure
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: labs/12-compiler-options-definitions-generator-expressions/solution
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build/ci -G "Visual Studio 17 2022" -A x64
+      - run: cmake --build build/ci --config Debug --parallel
+      - run: ctest --test-dir build/ci -C Debug --output-on-failure
