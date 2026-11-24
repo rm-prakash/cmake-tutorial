@@ -31,6 +31,3 @@ All **14 of 14** Chapter 3–16 solution projects passed a supported Linux confi
 - Full packaging/relocatability and failure-injection exercises for every chapter
 - All student starter exercises (many intentionally require completing TODOs)
 
-## Publication checklist
-
-Before releasing publicly, choose explicit licenses for original prose and code; review all code and images for third-party rights; test Windows and Android CI on target runners; inspect GitHub workflow permissions; and confirm no private credentials or internal artifact URLs have been included.
